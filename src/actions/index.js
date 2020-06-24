@@ -1,0 +1,3 @@
+export const APP_ACTION_TEST = "APP_ACTION_TEST";
+
+export const APP_ACTION_CHECKED = "APP_ACTION_CHECKED";

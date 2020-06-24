@@ -1,26 +1,55 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import { connect, useSelector, useDispatch } from "react-redux";
+import * as types from "./actions";
+import app from "./reducers/app";
 
-function App() {
+export default function App() {
+  const isChecked = useSelector(state => app.isChecked);
+  const dispatch = useDispatch();
+  const action = (type, data) => dispatch({ type, data });
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <div>{isChecked ? "true" : "false"}</div>
+      <div onClick={() => action(types.APP_ACTION_TEST, !isChecked)}>Hi</div>
     </div>
   );
 }
+// class App extends Component {
+//   constructor(props) {
+//     super(props);
+//   }
 
-export default App;
+//   render() {
+//     console.log(this.props);
+//     const { isChecked, action } = this.props;
+//     return (
+//       <div>
+//         <div>{isChecked ? "true" : "false"}</div>
+//         <div onClick={() => action(types.APP_ACTION_TEST, !isChecked)}>Hi</div>
+//       </div>
+//     );
+//   }
+// }
+
+// function mapStateToProps(state) {
+//   console.log(state);
+//   return {
+//     app: state.app
+//   };
+// }
+
+// function mapDispatchToProps(dispatch) {
+//   return {
+//     increment: () => dispatch({ type: "INCREMENT" }),
+//     decrement: () => dispatch({ type: "DECREMENT" }),
+//     reset: () => dispatch({ type: "RESET" })
+//   };
+// }
+
+// function mapDispatchToProps(dispatch) {
+//   return {
+//     action: (type, data) => dispatch({ type, data })
+//   };
+// }
+
+// export default connect(mapStateToProps, mapDispatchToProps)(App);
